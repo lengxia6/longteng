@@ -1,0 +1,45 @@
+{% extends "project/project_base.html" %} {% block project %}
+<p></p>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <form method="post">{% csrf_token %}
+                <div class="row form-group">
+                    <div class="col-lg-5">
+                    <label for="httpapi_name">接口测试名称</label>
+                    <input class="form-control" name="httpapi_name" id="httpapi_name" required="required">
+                    </div>
+                </div>
+                <p>选择要测试的接口</p>
+                <div class="row form-group">
+                    <div class="col-lg-5">
+                        <select name="from" class="form-control" id="multiselect" size="8" multiple="multiple">
+                            {% for object in objects %}
+                            <option value="{{ object.id }}">{{ object.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-lg-1">
+                        <button type="button" id="multiselect_rightAll" class="btn btn-block"><i class="fa fa-angle-double-right"></i></button>
+                        <button type="button" id="multiselect_rightSelected" class="btn btn-block"><i class="fa fa-angle-right"></i></button>
+                        <button type="button" id="multiselect_leftSelected" class="btn btn-block"><i class="fa fa-angle-left"></i></button>
+                        <button type="button" id="multiselect_leftAll" class="btn btn-block"><i class="fa fa-angle-double-left"></i></button>
+                    </div>
+
+
+                    <div class="col-lg-5">
+                        <select name="to" id="multiselect_to" class="form-control" size="8" multiple="multiple">
+
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-default">提交</button>
+            </form>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+</div>
+<script>
+
+</script> {% endblock %}

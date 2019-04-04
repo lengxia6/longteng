@@ -1,0 +1,9 @@
+.idea/
+venv/
+*.pyc
+Chapter-*-code/autotest/apiautotest/static/
+Chapter-*-code/locallibrary/catalog/static/
+Chapter-*-code/vue-admin/dist
+Chapter-*-code/vue-admin/node_modules
+.vscode/settings.json
+test.py

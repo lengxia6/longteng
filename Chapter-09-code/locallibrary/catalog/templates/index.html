@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% block content %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">概览</a>
+    </li>
+</ol>
+<div class="row">
+    <div class="col-xl-3 col-sm-6 mb-3">
+      <div class="card text-white bg-primary o-hidden h-100">
+        <div class="card-body">
+          <div class="card-body-icon">
+            <i class="fas fa-fw fa-comments"></i>
+          </div>
+          <div class="mr-5">图书种类: {{ num_books }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 mb-3">
+      <div class="card text-white bg-warning o-hidden h-100">
+        <div class="card-body">
+          <div class="card-body-icon">
+            <i class="fas fa-fw fa-list"></i>
+          </div>
+          <div class="mr-5">图书数量: {{ num_instances }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 mb-3">
+      <div class="card text-white bg-success o-hidden h-100">
+        <div class="card-body">
+          <div class="card-body-icon">
+            <i class="fas fa-fw fa-shopping-cart"></i>
+          </div>
+          <div class="mr-5">可接数量：{{ num_instances_available }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 mb-3">
+      <div class="card text-white bg-danger o-hidden h-100">
+        <div class="card-body">
+          <div class="card-body-icon">
+            <i class="fas fa-fw fa-life-ring"></i>
+          </div>
+          <div class="mr-5">作者数量: {{ num_authors }}</div>
+        </div>
+     
+      </div>
+    </div>
+  </div>
+{% endblock %}

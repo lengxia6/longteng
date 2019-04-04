@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">图书列表</a>
+        </li>
+    </ol>
+
+    <div class="card mb-3">
+        <div class="card-header">
+          <i class="fas fa-table"></i>
+          图书列表
+          </div>
+        <div class="card-body">
+            {% if book_list %}
+            <div class="table">
+                    <table class="table  table-sm   table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>书名</th>
+                                <th>作者</th>
+                                <th>ISBN</th>
+                                <th>列别</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for book in book_list %}
+                            <tr>
+                                <td><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></td>
+                                <td>{{book.author}}</td>
+                                <td>{{book.isbn}}</td>
+                                <td>{{book.genre }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <p>There are no books in the library.</p>
+                  {% endif %}
+            </div>
+        </div>
+       
+      </div>
+           
+{% endblock %}

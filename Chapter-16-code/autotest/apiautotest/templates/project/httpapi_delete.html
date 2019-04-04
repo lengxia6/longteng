@@ -1,0 +1,36 @@
+{% extends "project/project_base.html" %} {% block project %}
+<p></p>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="alert alert-danger" role="alert">
+                    删除接口{{ object.name }}
+                </div>
+                <button type="button" class="btn btn-secondary" onclick="cancel()">取消</button>
+                <button type="button" class="btn btn-primary" onclick="ok()">确认</button>
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+</div>
+<script>
+function cancel(){
+    //window.location.href="{% url 'httpapi_list' project.id %}"
+    window.history.back()
+}
+
+function ok(){
+    var request = new XMLHttpRequest()
+    
+    request.open("POST", "{% url 'httpapi_delete' project.id object.id %}")
+    request.onreadystatechange = function(){
+        if (request.readyState === 4 && request.status === 200){
+            window.location.href="{% url 'httpapi_list' project.id %}"
+        }
+    }
+    request.send(null)
+}
+</script>
+{% endblock %}

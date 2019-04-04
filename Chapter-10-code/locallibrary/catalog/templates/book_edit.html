@@ -1,0 +1,78 @@
+{% extends 'base.html' %} {% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">图书</a>
+                </li>
+                <li class="breadcrumb-item active">图书编辑</li>
+            </ol>
+            <div class="panel-body">
+                <div class="col-lg-6">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>名称</label>
+                            <input class="form-control" name="book_title" required="required" value="{{ book.title }}">
+                        </div>
+                        <div class="form-group">
+                            <label>作者</label>
+                            <select class="form-control" name="book_author" id="id_book_author">
+                                {% for author in authors %}
+                                <option value="{{ author.id }}">{{ author }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>概述</label>
+                            <textarea class="form-control" rows="5" name="book_summary" required="required">{{ book.summary }}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>ISBN</label>
+                            <input class="form-control" name="book_isbn" required="required" value="{{ book.isbn }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>类别</label>
+                            <select class="form-control" name="book_genre" id="id_book_genre" multiple>
+                                {% for genre in genres %}
+                                <option value="{{ genre.id }}">{{ genre }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.col-lg-6 -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<script>
+    
+        var e = document.getElementById("id_book_author")
+        var optionsText="{{ book.author }}"
+        for(var i=0;i<e.options.length;i++){
+            if(e.options[i].text==optionsText){
+                e.options[i].selected=true;
+            }
+        }
+        var e = document.getElementById("id_book_genre")
+        var optionsText="{% for genre in book.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}"
+        for(var i=0;i<e.options.length;i++){
+            if(optionsText.includes(e.options[i].text)){
+                e.options[i].selected=true;
+            }
+        }
+             
+    </script>
+{% endblock %}

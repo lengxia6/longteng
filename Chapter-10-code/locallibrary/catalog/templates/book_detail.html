@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">图书详情</a>
+        </li>
+    </ol>
+
+    <div class="card mb-3">
+        <div class="card-header">
+          <i class="fas fa-table"></i>
+          图书详情
+        </div>
+        <div class="card-body">
+
+                <h1>书名: {{ book.title }}</h1>
+
+                <p><strong>作者:</strong> <a href="">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
+                <p><strong>摘要:</strong> {{ book.summary }}</p>
+                <p><strong>ISBN:</strong> {{ book.isbn }}</p> 
+                <p><strong>语言:</strong> {{ book.language }}</p>  
+                <p><strong>类别:</strong> {% for genre in book.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>  
+              
+                <div style="margin-left:20px;margin-top:20px">
+                  <h4>副本</h4>
+              
+                  {% for copy in book.bookinstance_set.all %}
+                  <hr>
+                  <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">{{ copy.get_status_display }}</p>
+                  {% if copy.status != 'a' %}<p><strong>预计可借日期:</strong> {{copy.due_back}}</p>{% endif %}
+                  <p><strong>版次:</strong> {{copy.imprint}}</p>
+                  <p class="text-muted"><strong>Id:</strong> {{copy.id}}</p>
+                  {% endfor %}
+                </div>
+        </div>
+       
+      </div>
+           
+{% endblock %}
